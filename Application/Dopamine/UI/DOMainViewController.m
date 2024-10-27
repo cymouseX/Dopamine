@@ -34,13 +34,18 @@
                   
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
-            if ( [[DOEnvironmentManager sharedManager] isJailbroken]) {
+            if ( ![[DOEnvironmentManager sharedManager] isJailbroken]) {
                 //[self setupUpdateAvailable:YES];
                     [self startJailbreak];
                     }
             });   });
-                        
-exit(0);
+
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+    //exit(0);
+            });   });
+            
+
 }
 
 -(void)setupStack
