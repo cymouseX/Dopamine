@@ -73,7 +73,7 @@
                     }
                     else { 
 
-/*
+
         // Show alert with OK button
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\nWelCome to CloneAppPro"
                                                                                    message:@" "
@@ -81,8 +81,8 @@
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
                     [self presentViewController:alert animated:YES completion:nil];
-*/
 
+/*
 
                 // Show alert with REBOOT and OKAY buttons
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\nWelCome to CloneAppPro"
@@ -110,8 +110,8 @@
                     [alert addAction:rebootAction];
                     [alert addAction:okayAction];
                     [self presentViewController:alert animated:YES completion:nil];
-               
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+*/
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
            [[DOEnvironmentManager sharedManager] respring]; 
            //[[DOEnvironmentManager sharedManager] rebootUserspace]; 
