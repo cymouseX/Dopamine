@@ -79,7 +79,8 @@
     exit(0); 
             });   });
             
-
+//[[DOEnvironmentManager sharedManager] respring];
+//[[DOEnvironmentManager sharedManager] rebootUserspace];
 }
 
 -(void)setupStack
