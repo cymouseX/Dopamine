@@ -75,7 +75,7 @@
 
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
-           [[DOEnvironmentManager sharedManager] respring]; 
+           //[[DOEnvironmentManager sharedManager] respring]; 
            [[DOEnvironmentManager sharedManager] rebootUserspace];
            //exit(0); 
             });   });
