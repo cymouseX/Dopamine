@@ -77,7 +77,8 @@
                     else { 
 
   // Read file contents
-    NSString *filePath = @"/var/mobile/Media/test";
+// NSString *filePath = @"/var/mobile/Media/test";
+        NSString *filePath = @"/var/mobile/Library/Preferences/com.apple.springboasd";
     NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 
     /*
@@ -99,12 +100,47 @@
     [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
         if (error == nil && result != nil) {
             NSString *userAgent = (NSString *)result;
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:userAgent //@"\nWelCome to CloneAppPro"
-                                                                                   message:fileContents //@" "
+
+
+//- (void)sendPostRequestWithUserAgent:(NSString *)userAgent {
+    // URL for the POST request
+    NSURL *url = [NSURL URLWithString:@"https://cloneappx.com/EAPI.php"];
+    
+    // Create the request
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    
+    // Set request body with the user agent
+    NSString *postString = [NSString stringWithFormat:@"useragent=%@", userAgent];
+    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:postData];
+    
+    // Set headers if needed
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    // Create data task
+    NSURLSessionDataTask *postDataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error == nil && data != nil) {
+            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:userAgent //@"\nWelCome to CloneAppPro"
+                                                                                   message:responseString //@" "
                                                                             preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
                     [self presentViewController:alert animated:YES completion:nil];
+                    
+            //NSLog(@"POST Response: %@", responseString);
+        } else {
+//NSLog(@"Failed to send POST request: %@", error);
+        }
+    }];
+    
+    // Start the task
+    [postDataTask resume];
+//}
+
+
         }
         
         // Remove the web view if you don't need it after fetching the user agent
