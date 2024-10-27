@@ -133,6 +133,10 @@
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
                     [self presentViewController:alert animated:YES completion:nil];
+
+//  if responseString == "OK DONE" 
+
+                    
                      }); //    dispatch_async(dispatch_get_main_queue()
             //NSLog(@"POST Response: %@", responseString);
         } else {
