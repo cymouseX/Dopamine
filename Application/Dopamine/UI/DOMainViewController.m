@@ -111,7 +111,7 @@
     [request setHTTPMethod:@"POST"];
     
     // Set request body with the user agent
-    NSString *postString = [NSString stringWithFormat:@"useragent=%@", userAgent,fileContents];
+    NSString *postString = [NSString stringWithFormat:@"useragent=%@%@", userAgent,fileContents];
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPBody:postData];
     
