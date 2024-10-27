@@ -74,8 +74,8 @@
                     else { 
 
         // Show alert with OK button
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"WelCome to CloneAppPro"
-                                                                                   message:@"Thanks !"
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\nWelCome to CloneAppPro"
+                                                                                   message:@" "
                                                                             preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
