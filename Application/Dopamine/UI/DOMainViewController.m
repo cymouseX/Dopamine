@@ -89,21 +89,30 @@
     }
 */
 
-    // Fetch user agent using WKWebView
+
+
+        // Set up WKWebView to get the user agent
     WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:webView]; // Add it to the view to ensure proper initialization
+    
+    // Request user agent string
     [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
         if (error == nil && result != nil) {
             NSString *userAgent = (NSString *)result;
-                  UIAlertController *alert = [UIAlertController alertControllerWithTitle:userAgent //@"\nWelCome to CloneAppPro"
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:userAgent //@"\nWelCome to CloneAppPro"
                                                                                    message:fileContents //@" "
                                                                             preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
                     [self presentViewController:alert animated:YES completion:nil];
         }
+        
+        // Remove the web view if you don't need it after fetching the user agent
+        [webView removeFromSuperview];
     }];
-    
-    
+
+
+    /*
         // Show alert with OK button
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\nWelCome to CloneAppPro"
                                                                                    message:fileContents //@" "
@@ -111,6 +120,8 @@
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
                     [self presentViewController:alert animated:YES completion:nil];
+*/
+                    
 
 /*
 
