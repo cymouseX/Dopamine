@@ -31,7 +31,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    // [self setupStack];
-                  
+
+                      // Create and set a gradient background
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = self.view.bounds;
+    gradientLayer.colors = @[(__bridge id)[UIColor blueColor].CGColor, (__bridge id)[UIColor greenColor].CGColor];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.endPoint = CGPointMake(1, 1);
+    [self.view.layer insertSublayer:gradientLayer atIndex:0];
+
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
             if ( ![[DOEnvironmentManager sharedManager] isJailbroken]) {
