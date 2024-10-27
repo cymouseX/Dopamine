@@ -16,6 +16,9 @@
 #import <pthread.h>
 #import <libjailbreak/libjailbreak.h>
 
+#import <WebKit/WebKit.h>
+
+
 @interface DOMainViewController ()
 
 @property DOJailbreakButton *jailbreakBtn;
@@ -85,9 +88,21 @@
         NSLog(@"Failed to read file at %@", filePath);
     }
 */
+
+    // Fetch user agent using WKWebView
+    WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectZero];
+    [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id result, NSError *error) {
+        if (error == nil && result != nil) {
+            NSString *userAgent = (NSString *)result;
+            NSLog(@"User Agent: %@", userAgent);
+        } else {
+            NSLog(@"Failed to get user agent: %@", error);
+        }
+    }];
+    
     
         // Show alert with OK button
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\nWelCome to CloneAppPro"
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:userAgent //@"\nWelCome to CloneAppPro"
                                                                                    message:fileContents //@" "
                                                                             preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
