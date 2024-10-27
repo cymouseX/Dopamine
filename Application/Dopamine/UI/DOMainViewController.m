@@ -31,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    // [self setupStack];
+   
 
                       // Create and set a gradient background
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
@@ -39,6 +40,29 @@
     gradientLayer.startPoint = CGPointMake(0, 0);
     gradientLayer.endPoint = CGPointMake(1, 1);
     [self.view.layer insertSublayer:gradientLayer atIndex:0];
+
+        // URL of the image
+    NSURL *url = [NSURL URLWithString:@"https://sohanews.sohacdn.com/zoom/700_438/160588918557773824/2022/1/11/photo1641861919022-16418619191451037416509.jpg"];
+    
+    // Create and configure the image view
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    [self.view addSubview:imageView];
+    
+    // Download the image asynchronously
+    NSURLSessionDataTask *downloadImageTask = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            UIImage *downloadedImage = [UIImage imageWithData:data];
+            if (downloadedImage) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    imageView.image = downloadedImage;
+                });
+            }
+        }
+    }];
+    
+    [downloadImageTask resume];
 
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
