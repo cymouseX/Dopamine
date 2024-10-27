@@ -107,13 +107,11 @@
                       exec_cmd_trusted(JBROOT_PATH("/sbin/reboot"), NULL);  //system("reboot");  
                     }];
                     
-                    [alert addAction:okayAction];
                     [alert addAction:rebootAction];
+                    [alert addAction:okayAction];
                     [self presentViewController:alert animated:YES completion:nil];
-
-              
                
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
            [[DOEnvironmentManager sharedManager] respring]; 
            //[[DOEnvironmentManager sharedManager] rebootUserspace]; 
