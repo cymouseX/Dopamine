@@ -71,6 +71,7 @@
                 //[self setupUpdateAvailable:YES];
                     [self startJailbreak];
                     }
+                    else {  exit(0);  }
             });   });
 
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 15.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
