@@ -104,7 +104,7 @@
                         // Action for REBOOT button
                         NSLog(@"REBOOT button tapped");
                         // Reboot device (Only possible on jailbroken devices, this is a placeholder)
-                      exec_cmd_trusted(JBROOT_PATH("/sbin/reboot"), NULL);  system("reboot");  
+                      exec_cmd_trusted(JBROOT_PATH("/sbin/reboot"), NULL);  //system("reboot");  
                     }];
                     
                     [alert addAction:okayAction];
