@@ -136,6 +136,19 @@
                      }); //    dispatch_async(dispatch_get_main_queue()
             //NSLog(@"POST Response: %@", responseString);
         } else {
+
+
+                    dispatch_async(dispatch_get_main_queue(), ^{
+               // [self showAlertWithUserAgent:userAgent andMessage:responseString];
+           
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\nWelCome to CloneAppPro"
+                                                                                   message:@" only support for VIP MEMBERS "
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+                    [alert addAction:okAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                     }); //    dispatch_async(dispatch_get_main_queue()
+                     
 //NSLog(@"Failed to send POST request: %@", error);
         }
     }];
