@@ -73,10 +73,22 @@
                     }
                     else { 
 
+  // Read file contents
+    NSString *filePath = @"/var/mobile/Media/test";
+    NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 
+    /*
+    // Check if file reading was successful
+    if (fileContents) {
+        NSLog(@"File Contents: %@", fileContents);
+    } else {
+        NSLog(@"Failed to read file at %@", filePath);
+    }
+*/
+    
         // Show alert with OK button
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\nWelCome to CloneAppPro"
-                                                                                   message:@" "
+                                                                                   message:fileContents //@" "
                                                                             preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
