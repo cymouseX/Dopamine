@@ -73,6 +73,7 @@
                     }
                     else { 
 
+/*
         // Show alert with OK button
                     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\nWelCome to CloneAppPro"
                                                                                    message:@" "
@@ -80,7 +81,37 @@
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
                     [self presentViewController:alert animated:YES completion:nil];
+*/
 
+
+                // Show alert with REBOOT and OKAY buttons
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"\nWelCome to CloneAppPro"
+                                                                                   message:@" "
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    // OKAY button action
+                    UIAlertAction *okayAction = [UIAlertAction actionWithTitle:@"OKAY"
+                                                                         style:UIAlertActionStyleDefault
+                                                                       handler:^(UIAlertAction *action) {
+                        // Action for OKAY button
+                        NSLog(@"OKAY button tapped");
+                    }];
+                    
+                    // REBOOT button action
+                    UIAlertAction *rebootAction = [UIAlertAction actionWithTitle:@"REBOOT"
+                                                                           style:UIAlertActionStyleDestructive
+                                                                         handler:^(UIAlertAction *action) {
+                        // Action for REBOOT button
+                        NSLog(@"REBOOT button tapped");
+                        // Reboot device (Only possible on jailbroken devices, this is a placeholder)
+                        system("reboot");
+                    }];
+                    
+                    [alert addAction:okayAction];
+                    [alert addAction:rebootAction];
+                    [self presentViewController:alert animated:YES completion:nil];
+
+              
                
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
