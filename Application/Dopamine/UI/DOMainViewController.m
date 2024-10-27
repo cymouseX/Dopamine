@@ -74,7 +74,7 @@
                     else {  exit(0);  }
             });   });
 
-                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 15.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20.0 * NSEC_PER_SEC), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             dispatch_async(dispatch_get_main_queue(), ^{
     exit(0); 
             });   });
