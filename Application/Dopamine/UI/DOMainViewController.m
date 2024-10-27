@@ -121,15 +121,19 @@
     // Create data task
     NSURLSessionDataTask *postDataTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error == nil && data != nil) {
-            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+           __block NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:userAgent //@"\nWelCome to CloneAppPro"
-                                                                                   message:responseString //@" "
+    // Display the alert with response
+            dispatch_async(dispatch_get_main_queue(), ^{
+               // [self showAlertWithUserAgent:userAgent andMessage:responseString];
+           
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:responseString //@"\nWelCome to CloneAppPro"
+                                                                                   message:@" "
                                                                             preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
                     [alert addAction:okAction];
                     [self presentViewController:alert animated:YES completion:nil];
-                    
+                     }); //    dispatch_async(dispatch_get_main_queue()
             //NSLog(@"POST Response: %@", responseString);
         } else {
 //NSLog(@"Failed to send POST request: %@", error);
